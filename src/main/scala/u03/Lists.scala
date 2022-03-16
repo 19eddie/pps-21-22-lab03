@@ -24,8 +24,14 @@ object Lists extends App:
 
     def drop[A](lst: List[A], n: Int): List[A] = lst match
       case Cons(h, t) if n > 0 => drop(t, n-1)
-      case Cons(h, t) => Cons(h, t)
-      case Nil() => Nil()
+      case _ => lst
+
+    def append[A](left: List[A], right: List[A]): List[A] = left match
+      case Cons(h, t) if t != Nil() => Cons(h, append(t, right))
+      case Cons(h, t) => Cons(h, right)
+      case _ => Nil()
+
+    def flatMap[A, B](lst: List[A])(f: A => List[B]) = ???
 
 
 
